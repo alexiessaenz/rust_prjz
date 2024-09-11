@@ -2,7 +2,8 @@
 
 fn main() {
     mostrar_bienvenida();
-
+    let mut _n: i32;
+    _n = 32;
     let num = {
         10
     };
