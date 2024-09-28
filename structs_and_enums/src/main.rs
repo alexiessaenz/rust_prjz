@@ -1,8 +1,10 @@
 struct Usuario {
     nombre : String,
     email : String,
+    website : Website,
     edad : i32,
-    activo : bool
+    activo : bool,
+    user_role : UserRole
 }
 
 struct People {
@@ -19,11 +21,15 @@ impl  People {
 }
 
 fn main() {
+let role = UserRole::USER;
+
     let user = Usuario {
         nombre : "Julio".to_string(),
         email : String::from("something@email.com"),
         edad : 32,
-        activo : true
+        website : Website::INSTAGRAM( String::from("@alexiessaenz") ),
+        activo : true,
+        user_role : role
     };
 
     println!("Usuario {}, \nedad {}", user.nombre, user.edad);
@@ -35,7 +41,7 @@ fn main() {
         email : String::from("some@email.com"),
         ..user1
     }; 
-    println!("\nUsuario {}, \nedad {}, \nemail {}, \nactivo {}", user2.nombre, user2.edad, user2.email, user2.activo);
+    println!("\nUsuario {}, \nedad {}, \nemail {}, \nactivo {}, \nwebsite {}", user2.nombre, user2.edad, user2.email, user2.activo, user2.activo);
 
     //tuples struct
     struct Point(i32,i32,i32);
@@ -49,6 +55,9 @@ fn main() {
     };
 
     println!("\nPeople: \nnombre {}, \nedad {}, \nemail {}, \nactivo {}", people.nombre, people.edad(), people.email, people.activo);
+    
+    let access = hasAccess(user.user_role);
+    println!("user tiene acceso? : {}", access);
 
 }
 
@@ -57,8 +66,29 @@ fn nuevo_usuario(nombre: String, email: String) -> Usuario {
         nombre,
         email,
         edad : 32,
-        activo : true
+        activo : true,
+        website : Website::INSTAGRAM( String::from("@alexiessaenz") ),
+        user_role : UserRole::ADMIN
     };
 
 
+}
+
+enum UserRole {
+    USER,
+    ADMIN,
+}
+
+enum Website {
+    URL(String),
+    INSTAGRAM(String),
+    FACEBOOK(String),
+    LINKEDIN(String)
+}
+
+fn hasAccess( user_role : UserRole ) -> bool {
+    match user_role {
+        UserRole::ADMIN => true,
+        UserRole::USER => false,
+    }
 }
