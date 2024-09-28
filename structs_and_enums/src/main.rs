@@ -1,7 +1,7 @@
 struct Usuario {
     nombre : String,
     email : String,
-    website : Website,
+    web_site : Website,
     edad : i32,
     activo : bool,
     user_role : UserRole
@@ -27,7 +27,7 @@ let role = UserRole::USER;
         nombre : "Julio".to_string(),
         email : String::from("something@email.com"),
         edad : 32,
-        website : Website::INSTAGRAM( String::from("@alexiessaenz") ),
+        web_site : Website::INSTAGRAM( String::from("@alexiessaenz") ),
         activo : true,
         user_role : role
     };
@@ -41,7 +41,7 @@ let role = UserRole::USER;
         email : String::from("some@email.com"),
         ..user1
     }; 
-    println!("\nUsuario {}, \nedad {}, \nemail {}, \nactivo {}, \nwebsite {}", user2.nombre, user2.edad, user2.email, user2.activo, user2.activo);
+    println!("\nUsuario {}, \nedad {}, \nemail {}, \nactivo {}, \nwebsite {:#?}", user2.nombre, user2.edad, user2.email, user2.activo, user2.web_site);
 
     //tuples struct
     struct Point(i32,i32,i32);
@@ -67,7 +67,7 @@ fn nuevo_usuario(nombre: String, email: String) -> Usuario {
         email,
         edad : 32,
         activo : true,
-        website : Website::INSTAGRAM( String::from("@alexiessaenz") ),
+        web_site : Website::INSTAGRAM( String::from("@alexiessaenz") ),
         user_role : UserRole::ADMIN
     };
 
@@ -79,6 +79,7 @@ enum UserRole {
     ADMIN,
 }
 
+#[derive(Debug)]
 enum Website {
     URL(String),
     INSTAGRAM(String),
