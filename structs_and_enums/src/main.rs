@@ -21,7 +21,7 @@ impl  People {
 }
 
 fn main() {
-let role = UserRole::USER;
+    let role = UserRole::USER;
 
     let user = Usuario {
         nombre : "Julio".to_string(),
@@ -59,6 +59,13 @@ let role = UserRole::USER;
     let access = hasAccess(user.user_role);
     println!("user tiene acceso? : {}", access);
 
+    let nombre : Option<String> = None;
+    let nombre : Option<String> = Some( "Julio".to_string() );
+    println!("");
+    match nombre {
+        None => println!("Nombre no indicado"),
+        Some(nombre) => println!("{}", nombre),
+    }
 }
 
 fn nuevo_usuario(nombre: String, email: String) -> Usuario {
@@ -93,3 +100,8 @@ fn hasAccess( user_role : UserRole ) -> bool {
         UserRole::USER => false,
     }
 }
+
+// enum Option<T> {
+//     Some(T),
+//     None,
+// }
